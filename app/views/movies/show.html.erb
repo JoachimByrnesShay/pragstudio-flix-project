@@ -1,0 +1,94 @@
+<section class="user">
+    <% if current_user %>
+    <h1>
+        <%= profile_image(current_user, 45) %>
+        <%= current_user.name %>
+    </h1>
+    <% end %>
+</section>
+<aside class="float-right" style="position: absolute; right: 7%;">
+    <% if @fans.present? %>
+    <h4>Fans</h4>
+    <% @fans.each do |user| %>
+    <p>
+        <%= link_to profile_image(user, 25), user %>
+        <%= link_to user.name, user %>
+    </p>
+    <% end %>
+    <% end %>
+    <% if @genres.present? %>
+    <h4> Genres: </h4>
+    <div class="genres" style="position: absolute: right: 7%;">
+      <ul>
+          <% @genres.each do |g| %>
+            <li> <%= g.name %> </li>
+          <% end %>
+      </ul> 
+    </div>
+    <% end %>
+</aside>
+<section class="movie-details">
+    <div class="image">
+        <%= image_tag @movie.image_file_name %>
+        <% if current_user %>
+        <div class="faves">
+         <%=  @favorite.inspect %>
+          <%= fave_or_unfave_button(@favorite, @movie) %>
+          <div class="count">
+            <%= @fans.size %>
+          </div>
+        </div>
+        <% end %>
+    </div>
+    <div class="details">
+        <h1>
+            <%= @movie.title %>
+        </h1>
+        <h2>
+            <%= year_of(@movie) %> &bull;
+            <%= @movie.rating %>
+        </h2>
+        <div class="reviews">
+            <%= render "shared/stars", percent: @movie.average_stars_as_percentage %>
+        </div>
+        <div class="reviews">
+            <%= link_to pluralize(@movie.reviews.count, "review"), movie_reviews_path(@movie) %>
+        </div>
+        <p>
+            <%= @movie.description %>
+        </p>
+        <table>
+            <tr>
+                <th>Director: </th>
+                <td>
+                    <%= @movie.director %>
+                </td>
+            </tr>
+            <tr>
+                <th>Duration: </th>
+                <td>
+                    <%= @movie.duration %>
+                </td>
+            </tr>
+            <tr>
+                <th>Total Gross:</th>
+                <td>
+                    <%= total_gross(@movie) %>
+                </td>
+            </tr>
+        </table>
+        <% if current_user %>
+        <div id="secret_form" class="hide">
+            <%= render "reviews/form", model: [@movie, @review], object: @review %>
+        </div>
+        <%= button_tag "Review Movie", type: 'button', id: 'hidden_form_button', onclick: "myfunc", class: "review_btn review" %>
+        <% end %>
+    </div>
+</section>
+<% if current_user_admin? %>
+<section class="admin">
+    <%= link_to "Edit Movie", edit_movie_path(@movie), class: "button" %>
+    <%= link_to "Delete Movie", movie_path(@movie), class: "button", method: :delete, data: {confirm: "Really?"} %>
+</section>
+<% end %>
+<%= link_to "Close Review", "", class: "button hide", id: "form_button_hidden" %>

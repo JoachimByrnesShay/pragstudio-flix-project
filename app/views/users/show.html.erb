@@ -1,0 +1,49 @@
+
+<section class="user"> 
+	
+	<h1> <%= profile_image(@user) %> <%= @user.name %></h1>
+	 
+	<h2><%= mail_to(@user.email) %> </h2> 
+	<% @t = @user.created_at %>
+	<h3>Member since: <%= @t.strftime("%B %Y") %> </h3> 
+
+	<% if @reviews.present? %>
+	<h3> <%= pluralize(@reviews.size, "review") %>: </h3>
+	<% @reviews.each do |r| %>
+	<div class = "review" >
+		<div class = "details">
+			<span class="title">
+				<%= link_to r.movie.title, r.movie %>
+			</span>
+			<%= render "shared/stars", percent: r.movie.average_stars_as_percentage %>
+			
+			<span class="date">
+				<%= time_ago_in_words(r.created_at) %> ago
+			</span>
+			<p>
+				<%= r.comment %>
+			</p>
+		</div>
+	</div>
+	<% end %>
+	<% end %>
+	<% if @faves.present? %>
+	<h3> Favorite Movies </h3>
+		<div class = "favorite-movies" >
+				<% @faves.each do |f| %>
+					 <%= link_to f.title, f %>
+				<% end %>
+
+		</div>
+	<% end %>
+	<aside>
+
+	<% if current_user?(@user) %>
+	<div class="actions">
+		<%= link_to "Edit Account", edit_user_path, class: "button edit" %>
+		<% if current_user_admin? %>
+		<%= link_to "Delete Account", user_path, method: "delete", data: {confirm: "#{@user.name}, are you CERTAIN?"} , class: "button delete" %>
+		<% end %>
+	</div>
+	<% end %>
+</section>

@@ -1,0 +1,18 @@
+<%= form_with(model: model, local: true) do |f| %>
+<%= render "shared/errors", object: object %>
+	<%= f.label :name %>
+	
+	<%= f.text_field :name, readonly: true, value: current_user.name %>
+	
+	<%= f.label :stars %>
+	<% (Review::STARS).each do |s| %>
+	<span class="star">
+		<%= f.radio_button( :stars, s)%>
+		<%= label_tag s %>
+	</span>
+	<% end %>
+
+	<%= f.label :comment %>
+	<%= f.text_area :comment, placeholder: "What did you think?" %>
+	<%= f.submit "Post Review" %>
+<% end %>
