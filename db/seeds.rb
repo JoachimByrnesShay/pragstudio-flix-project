@@ -191,9 +191,9 @@ u6 = User.create(name: "Oval Wilson", email: "otwilson@dia.mil", username: "roun
 @m3 = Movie.find_by(title: "Catwoman")
 @m1 = Movie.find_by(title: 'Spider-Man')
 Review.create!([
-  { user: User.find_by("Billy Smith"), stars: 4, comment: "it's great!", movie: @m1 },
-  { user: User.find_by("Faisal Alar"), stars: 3, comment: "so good", movie: @m2 },
-  { user: User.find_by("Vanya Filipovich"), stars: 4, comment: "xarasho", movie: @m3 }
+  { user: User.find_by(name: "Billy Smith"), stars: 4, comment: "it's great!", movie: @m1 },
+  { user: User.find_by(name: "Faisal Alar"), stars: 3, comment: "so good", movie: @m2 },
+  { user: User.find_by(name: "Vanya Filipovich"), stars: 4, comment: "xarasho", movie: @m3 }
 ])
 
 @m3.reviews.create(user: User.find_by(name: "Quafi Muman"), stars: 3, comment: "na bad")
