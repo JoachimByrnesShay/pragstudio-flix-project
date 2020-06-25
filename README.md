@@ -1,5 +1,9 @@
 # README
 
+# pragstudio rails course practice project: flix
+
+# June 2020
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
