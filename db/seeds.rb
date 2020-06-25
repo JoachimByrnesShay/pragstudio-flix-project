@@ -181,7 +181,7 @@ u1 = User.create(name: "Billy Smith", email: "bsmith@yahoo.com", username: "bill
 u2 = User.create(name: "Faisal Alar", email: "fsalar@nro.mil", username: "faisal", password: ps1, password_confirmation: ps1)
 u3 = User.create(name: "Vanya Filipovich", email: "vfilipovich@nsa.gov", username: "ivan", password: ps1, password_confirmation: ps1)
 u4 = User.create(name: "Quafi Muman", email: "qmuman@cia.gov", username: "mummy", password: ps1, password_confirmation: ps1)
-u5 = User.create(name: "Ivan Pavlovich", email: "ipavlovich@microsoft.com", uername: "vanya", password: ps1, password_confirmation: ps1)
+u5 = User.create(name: "Ivan Pavlovich", email: "ipavlovich@microsoft.com", username: "vanya", password: ps1, password_confirmation: ps1)
 u6 = User.create(name: "Oval Wilson", email: "otwilson@dia.mil", username: "roundednotround", password: ps1, password_confirmation: ps1)
 
 
