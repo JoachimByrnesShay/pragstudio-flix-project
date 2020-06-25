@@ -189,9 +189,9 @@ Review.create!([
   { name: "Vanya Filipovich", stars: 4, comment: "xarasho", movie: @m3 }
 ])
 
-@m3.reviews.create(name: "Quafi Muman", stars: 3, comment: "na bad")
-@m3.reviews.create(name: "Ivan Pavlovich", stars: 4, comment: "Da")
-@m3.reviews.create(name: "Oval Wilson", stars: 1, comment: "it's for squares")
+@m3.reviews.create(user: User.find_by(name: "Quafi Muman"), stars: 3, comment: "na bad")
+@m3.reviews.create(user: User.find_by(name: "Ivan Pavlovich"), stars: 4, comment: "Da")
+@m3.reviews.create(user: User.find_by(name: "Oval Wilson"), stars: 1, comment: "it's for squares")
 
 
 Genre.create(name: "Action")
